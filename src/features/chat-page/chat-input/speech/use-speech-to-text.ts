@@ -35,6 +35,7 @@ class SpeechToText {
 
     const autoDetectSourceLanguageConfig =
       AutoDetectSourceLanguageConfig.fromLanguages([
+        "nl-NL",
         "en-US",
         "zh-CN",
         "it-IT",
