@@ -61,7 +61,7 @@ export const ChatPage: FC<ChatPageProps> = (props) => {
                 }}
                 profilePicture={
                   message.role === "assistant"
-                    ? "/ai-icon.png"
+                    ? "/uvalogo_tag_black.svg"
                     : session?.user?.image
                 }
               >
