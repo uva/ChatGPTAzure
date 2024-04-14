@@ -84,9 +84,9 @@ jobs:
           inlineScript: |
             rg=$(az webapp list --query "[?name=='azurechat-test-webapp-sueg3u6iwn5za'].resourceGroup" --output tsv)
             echo Setting SCM_DO_BUILD_DURING_DEPLOYMENT=false on app service azurechat-test-webapp-sueg3u6iwn5za
-            az webapp config appsettings set -n azurechat-test-webapp-sueg3u6iwn5za -g $rg --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false -o none
+            az webapp config appsettings set -n azurechat-test-webapp-sueg3u6iwn5za -g ChatGPT-test-environment --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false -o none
             echo Setting --startup-file=\"node server.js\" on app service azurechat-test-webapp-sueg3u6iwn5za
-            az webapp config set --startup-file="node server.js" -n azurechat-test-webapp-sueg3u6iwn5za -g $rg -o none
+            az webapp config set --startup-file="node server.js" -n azurechat-test-webapp-sueg3u6iwn5za -g ChatGPT-test-environment -o none
             sleep 10
 
       - name: 🚀 Deploy to Azure Web App
