@@ -82,6 +82,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            az account set --subscription 1ab20903-761f-4de3-877b-8f281de0f62c
             rg=ChatGPT-test-environment
             echo Setting SCM_DO_BUILD_DURING_DEPLOYMENT=false on app service azurechat-test-webapp-sueg3u6iwn5za and resource group $rg
             az webapp config appsettings set -n azurechat-test-webapp-sueg3u6iwn5za -g $rg --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false -o none
