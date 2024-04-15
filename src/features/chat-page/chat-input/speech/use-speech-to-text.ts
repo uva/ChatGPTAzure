@@ -37,9 +37,6 @@ class SpeechToText {
       AutoDetectSourceLanguageConfig.fromLanguages([
         "nl-NL",
         "en-US",
-        "zh-CN",
-        "it-IT",
-        "pt-BR",
       ]);
 
     const recognizer = SpeechRecognizer.FromConfig(
