@@ -82,19 +82,18 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az account set --subscription 1ab20903-761f-4de3-877b-8f281de0f62c
-            rg=ChatGPT-test-environment
-            echo Setting SCM_DO_BUILD_DURING_DEPLOYMENT=false on app service azurechat-test-webapp-sueg3u6iwn5za and resource group $rg
-            az webapp config appsettings set -n azurechat-test-webapp-sueg3u6iwn5za -g $rg --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false -o none
-            echo Setting --startup-file=\"node server.js\" on app service azurechat-test-webapp-sueg3u6iwn5za
-            az webapp config set --startup-file="node server.js" -n azurechat-test-webapp-sueg3u6iwn5za -g $rg -o none
+            rg=$(az webapp list --query "[?name=='tlc-fmg-ai-chat-webapp-mgwdmtdulxnz6'].resourceGroup" --output tsv)
+            echo Setting SCM_DO_BUILD_DURING_DEPLOYMENT=false on app service chatgpt-test-webapp-eaupaig44g26u and resource group $rg
+            az webapp config appsettings set -n chatgpt-test-webapp-eaupaig44g26u -g $rg --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false -o none
+            echo Setting --startup-file=\"node server.js\" on app service chatgpt-test-webapp-eaupaig44g26u
+            az webapp config set --startup-file="node server.js" -n chatgpt-test-webapp-eaupaig44g26u -g $rg -o none
             sleep 10
 
       - name: 🚀 Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: azurechat-test-webapp-sueg3u6iwn5za
+          app-name: chatgpt-test-webapp-eaupaig44g26u
           package: ${{ github.workspace }}/Nextjs-site.zip
 
       - name: 🧹 Cleanup
