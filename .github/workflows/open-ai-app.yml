@@ -82,7 +82,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            rg=$(az webapp list --query "[?name=='tlc-fmg-ai-chat-webapp-mgwdmtdulxnz6'].resourceGroup" --output tsv)
+            rg=$(az webapp list --query "[?name=='chatgpt-test-webapp-eaupaig44g26u'].resourceGroup" --output tsv)
             echo Setting SCM_DO_BUILD_DURING_DEPLOYMENT=false on app service chatgpt-test-webapp-eaupaig44g26u and resource group $rg
             az webapp config appsettings set -n chatgpt-test-webapp-eaupaig44g26u -g $rg --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false -o none
             echo Setting --startup-file=\"node server.js\" on app service chatgpt-test-webapp-eaupaig44g26u
