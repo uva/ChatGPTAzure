@@ -11,7 +11,7 @@ import { FC } from "react";
 
 interface ChatPersonaProps {
   personas: PersonaModel[];
-  // extensions: ExtensionModel[];
+  extensions: ExtensionModel[];
 }
 
 export const ChatHome: FC<ChatPersonaProps> = (props) => {
