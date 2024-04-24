@@ -325,7 +325,7 @@ export const EmbedDocuments = async (
 
     const embeddings = await openai.embeddings.create({
       input: contentsToEmbed,
-      model: process.env.AZURE_OPENAI_API_EMBEDDINGS_DEPLOYMENT_NAME,
+      model: process.env.AZURE_OPENAI_API_EMBEDDINGS_DEPLOYMENT_NAME || "text-embedding-ada-002",
     });
 
     embeddings.data.forEach((embedding, index) => {
