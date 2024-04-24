@@ -20,22 +20,22 @@ export const CreatePrompt = async (
   try {
     const user = await getCurrentUser();
 
-    if (!user.isAdmin) {
-      return {
-        status: "UNAUTHORIZED",
-        errors: [
-          {
-            message: `Unable to create prompt`,
-          },
-        ],
-      };
-    }
+    // if (!user.isAdmin && !user.isTeacher) {
+    //   return {
+    //     status: "UNAUTHORIZED",
+    //     errors: [
+    //       {
+    //         message: `Unable to create prompt`,
+    //       },
+    //     ],
+    //   };
+    // }
 
     const modelToSave: PromptModel = {
       id: uniqueId(),
       name: props.name,
       description: props.description,
-      isPublished: user.isAdmin ? props.isPublished : false,
+      isPublished: (user.isAdmin || user.isTeacher) ? props.isPublished : false,
       userId: await userHashedId(),
       createdAt: new Date(),
       type: "PROMPT",
@@ -106,6 +106,49 @@ export const FindAllPrompts = async (): Promise<
       errors: [
         {
           message: `Error retrieving prompt: ${error}`,
+        },
+      ],
+    };
+  }
+};
+
+export const FindAllPromptsForCurrentUser = async (): Promise<
+  ServerActionResponse<Array<PersonaModel>>
+> => {
+  try {
+    const querySpec: SqlQuerySpec = {
+      query:
+        "SELECT * FROM root r WHERE r.type=@type AND (r.isPublished=@isPublished OR r.userId=@userId) ORDER BY r.createdAt DESC",
+      parameters: [
+        {
+          name: "@type",
+          value: PROMPT_ATTRIBUTE,
+        },
+        {
+          name: "@isPublished",
+          value: true,
+        },
+        {
+          name: "@userId",
+          value: await userHashedId(),
+        },
+      ],
+    };
+
+    const { resources } = await HistoryContainer()
+      .items.query<PersonaModel>(querySpec)
+      .fetchAll();
+
+    return {
+      status: "OK",
+      response: resources,
+    };
+  } catch (error) {
+    return {
+      status: "ERROR",
+      errors: [
+        {
+          message: `Error finding persona: ${error}`,
         },
       ],
     };
@@ -227,7 +270,7 @@ export const UpsertPrompt = async (
         ...prompt,
         name: promptInput.name,
         description: promptInput.description,
-        isPublished: user.isAdmin
+        isPublished: (user.isAdmin || user.isTeacher)
           ? promptInput.isPublished
           : prompt.isPublished,
         createdAt: new Date(),

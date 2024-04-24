@@ -41,10 +41,10 @@ export const UserProfile = () => {
               {session?.user?.email}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {session?.user?.isAdmin ? "Admin" : ""}
+              {session?.user?.isAdmin ? "Role: Admin" : ""}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {session?.user?.isTeacher ? "Teacher" : ""}
+              {session?.user?.isTeacher ? "Role: Teacher" : ""}
             </p>
           </div>
         </DropdownMenuLabel>

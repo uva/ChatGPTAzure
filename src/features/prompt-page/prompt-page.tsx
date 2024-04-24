@@ -5,14 +5,14 @@ import { ScrollArea } from "../ui/scroll-area";
 import { AddPromptSlider } from "./add-new-prompt";
 import { PromptCard } from "./prompt-card";
 import { PromptHero } from "./prompt-hero/prompt-hero";
-import { FindAllPrompts } from "./prompt-service";
+import { FindAllPromptsForCurrentUser } from "./prompt-service";
 
 interface ChatSamplePromptProps {}
 
 export const ChatSamplePromptPage: FC<ChatSamplePromptProps> = async (
   props
 ) => {
-  const promptsResponse = await FindAllPrompts();
+  const promptsResponse = await FindAllPromptsForCurrentUser();
 
   if (promptsResponse.status !== "OK") {
     return <DisplayError errors={promptsResponse.errors} />;

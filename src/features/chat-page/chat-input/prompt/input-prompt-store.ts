@@ -1,5 +1,5 @@
 import { PromptModel } from "@/features/prompt-page/models";
-import { FindAllPrompts } from "@/features/prompt-page/prompt-service";
+import { FindAllPromptsForCurrentUser } from "@/features/prompt-page/prompt-service";
 import { proxy, useSnapshot } from "valtio";
 import { chatStore } from "../../chat-store";
 import { SetInputRowsToMax } from "../use-chat-input-dynamic-height";
@@ -15,7 +15,7 @@ class InputPromptState {
     this.isLoading = true;
     this.errors = [];
 
-    const response = await FindAllPrompts();
+    const response = await FindAllPromptsForCurrentUser();
 
     if (response.status === "OK") {
       this.prompts = response.response;
