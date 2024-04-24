@@ -43,6 +43,9 @@ export const UserProfile = () => {
             <p className="text-xs leading-none text-muted-foreground">
               {session?.user?.isAdmin ? "Admin" : ""}
             </p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {session?.user?.isTeacher ? "Teacher" : ""}
+            </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
