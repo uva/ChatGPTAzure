@@ -325,7 +325,7 @@ export const EmbedDocuments = async (
 
     const embeddings = await openai.embeddings.create({
       input: contentsToEmbed,
-      model: process.env.AZURE_OPENAI_API_EMBEDDINGS_DEPLOYMENT_NAME || "text-embedding-ada-002",
+      model: process.env.AZURE_OPENAI_API_EMBEDDINGS_DEPLOYMENT_NAME!, // strange line, dependancy fix of openai dependancy?
     });
 
     embeddings.data.forEach((embedding, index) => {
@@ -353,7 +353,7 @@ export const EnsureIndexIsCreated = async (): Promise<
 > => {
   try {
     const client = AzureAISearchIndexClientInstance();
-    const result = await client.getIndex(process.env.AZURE_SEARCH_INDEX_NAME);
+    const result = await client.getIndex(process.env.AZURE_SEARCH_INDEX_NAME!);
     return {
       status: "OK",
       response: result,
@@ -369,7 +369,7 @@ const CreateSearchIndex = async (): Promise<
   try {
     const client = AzureAISearchIndexClientInstance();
     const result = await client.createIndex({
-      name: process.env.AZURE_SEARCH_INDEX_NAME,
+      name: process.env.AZURE_SEARCH_INDEX_NAME!,
       vectorSearch: {
         algorithms: [
           {
