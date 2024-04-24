@@ -83,7 +83,7 @@ export const CreatePersona = async (
       name: props.name,
       description: props.description,
       personaMessage: props.personaMessage,
-      isPublished: user.isAdmin ? props.isPublished : false,
+      isPublished: (user.isAdmin || user.isTeacher) ? props.isPublished : false,
       userId: await userHashedId(),
       createdAt: new Date(),
       type: "PERSONA",
@@ -194,7 +194,7 @@ export const UpsertPersona = async (
         name: personaInput.name,
         description: personaInput.description,
         personaMessage: personaInput.personaMessage,
-        isPublished: user.isAdmin
+        isPublished: (user.isAdmin || user.isTeacher)
           ? personaInput.isPublished
           : persona.isPublished,
         createdAt: new Date(),

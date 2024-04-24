@@ -12,6 +12,10 @@ const configureIdentityProvider = () => {
     email.toLowerCase().trim()
   );
 
+  const teacherEmails = process.env.TEACHER_EMAIL_ADDRESS?.split(",").map((email) =>
+    email.toLowerCase().trim()
+  );
+
   if (process.env.AUTH_GITHUB_ID && process.env.AUTH_GITHUB_SECRET) {
     providers.push(
       GitHubProvider({
@@ -46,6 +50,9 @@ const configureIdentityProvider = () => {
             isAdmin:
               adminEmails?.includes(profile.email.toLowerCase()) ||
               adminEmails?.includes(profile.preferred_username.toLowerCase()),
+            isTeacher:
+              teacherEmails?.includes(profile.email.toLowerCase()) ||
+              teacherEmails?.includes(profile.preferred_username.toLowerCase()),
           };
           return newProfile;
         },
@@ -99,10 +106,14 @@ export const options: NextAuthOptions = {
       if (user?.isAdmin) {
         token.isAdmin = user.isAdmin;
       }
+      if (user?.isTeacher) {
+        token.isTeacher = user.isTeacher;
+      }
       return token;
     },
     async session({ session, token, user }) {
       session.user.isAdmin = token.isAdmin as boolean;
+      session.user.isTeacher = token.isTeacher as boolean;
       return session;
     },
   },

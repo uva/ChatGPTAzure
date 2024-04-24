@@ -11,6 +11,7 @@ export const userSession = async (): Promise<UserModel | null> => {
       image: session.user.image!,
       email: session.user.email!,
       isAdmin: session.user.isAdmin!,
+      isTeacher: session.user.isTeacher!,
     };
   }
 
@@ -52,4 +53,5 @@ export type UserModel = {
   image: string;
   email: string;
   isAdmin: boolean;
+  isTeacher: boolean;
 };
