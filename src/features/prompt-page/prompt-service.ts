@@ -113,11 +113,11 @@ export const FindAllPrompts = async (): Promise<
 };
 
 export const FindAllPromptsForCurrentUser = async (): Promise<
-  ServerActionResponse<Array<PersonaModel>>
+  ServerActionResponse<Array<PromptModel>>
 > => {
   try {
     const querySpec: SqlQuerySpec = {
-      query:
+      query: 
         "SELECT * FROM root r WHERE r.type=@type AND (r.isPublished=@isPublished OR r.userId=@userId) ORDER BY r.createdAt DESC",
       parameters: [
         {
@@ -135,8 +135,8 @@ export const FindAllPromptsForCurrentUser = async (): Promise<
       ],
     };
 
-    const { resources } = await HistoryContainer()
-      .items.query<PersonaModel>(querySpec)
+    const { resources } = await ConfigContainer()
+      .items.query<PromptModel>(querySpec)
       .fetchAll();
 
     return {
@@ -148,7 +148,7 @@ export const FindAllPromptsForCurrentUser = async (): Promise<
       status: "ERROR",
       errors: [
         {
-          message: `Error finding persona: ${error}`,
+          message: `Error retrieving prompt: ${error}`,
         },
       ],
     };
