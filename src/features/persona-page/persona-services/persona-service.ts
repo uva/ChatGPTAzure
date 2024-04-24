@@ -143,7 +143,7 @@ export const EnsurePersonaOperation = async (
     status: "UNAUTHORIZED",
     errors: [
       {
-        message: `Persona not found with id: ${personaId}`,
+        message: `You are not authorized to edit this persona`,
       },
     ],
   };
