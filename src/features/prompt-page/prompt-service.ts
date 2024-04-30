@@ -172,7 +172,7 @@ export const EnsurePromptOperation = async (
     status: "UNAUTHORIZED",
     errors: [
       {
-        message: `Prompt not found with id: ${promptId}`,
+        message: `You are not allowed to edit or delete  Prompt with id: ${promptId}`,
       },
     ],
   };
