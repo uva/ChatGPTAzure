@@ -52,9 +52,14 @@ export const AddNewPersona: FC<Props> = (props) => {
   };
 
   const [topP, setTopP] = useState<number>(persona.topP || 0);
+  const [temperature, setTemperature] = useState<number>(persona.topP || 0);
 
   const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTopP(Number(event.target.value));
+  };
+
+  const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTemperature(Number(event.target.value));
   };
 
 
@@ -117,20 +122,37 @@ export const AddNewPersona: FC<Props> = (props) => {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="top_p">Top P: {topP}</Label>
+                <Label htmlFor="topP">Top P: {topP}</Label>
                 <input
                   type="range"
                   required
                   min="0"
                   max="1"
                   step="0.01"
-                  name="top_p"
+                  name="topP"
                   value={topP}
                   onChange={handleSliderChange}
                   className="block w-full" // Add your custom styles if necessary
                 />
                 <div className="text-center">{topP}</div>
               </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="temperature">temperature: {topP}</Label>
+                <input
+                  type="range"
+                  required
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  name="temperature"
+                  value={temperature}
+                  onChange={handleSliderChange}
+                  className="block w-full" // Add your custom styles if necessary
+                />
+                <div className="text-center">{topP}</div>
+              </div>
+
             </div>
           </ScrollArea>
           <SheetFooter className="py-2 flex sm:justify-between flex-row">
