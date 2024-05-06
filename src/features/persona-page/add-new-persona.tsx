@@ -51,10 +51,10 @@ export const AddNewPersona: FC<Props> = (props) => {
     }
   };
 
-  const [topP, setTopP] = useState<string>(persona.topP || '0');
+  const [topP, setTopP] = useState<number>(persona.topP || 0);
 
   const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTopP(event.target.value);
+    setTopP(Number(event.target.value));
   };
 
 
