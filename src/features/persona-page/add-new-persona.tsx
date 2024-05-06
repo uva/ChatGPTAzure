@@ -62,6 +62,10 @@ export const AddNewPersona: FC<Props> = (props) => {
     setTemperature(Number(event.target.value));
   };
 
+  const [model, setModel] = useState<number>(persona.model || 'gpt-4-turbo'); // Default value
+
+  const handleModelChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setModel(event.target.value);
 
   return (
     <Sheet
@@ -136,7 +140,6 @@ export const AddNewPersona: FC<Props> = (props) => {
                 />
                 {/* <div className="text-center">{topP}</div> */}
               </div>
-
               <div className="grid gap-2">
                 <Label htmlFor="temperature">temperature: {temperature}</Label>
                 <input
@@ -151,6 +154,20 @@ export const AddNewPersona: FC<Props> = (props) => {
                   className="block w-full" // Add your custom styles if necessary
                 />
                 {/* <div className="text-center">{temperature}</div> */}
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="model">AI Model</Label>
+                <select
+                  required
+                  name="model"
+                  value={model}
+                  onChange={handleModelChange}
+                  className="block w-full border border-gray-300 rounded-md p-2 shadow-sm" // Add your custom styles if necessary
+                >
+                  <option value="gpt-3.5-turbo">GPT-3.5-Turbo</option>
+                  <option value="gpt-4-turbo">GPT-4-Turbo</option>
+                  <option value="gpt-4">GPT-4</option>
+                </select>
               </div>
 
             </div>
