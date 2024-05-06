@@ -51,9 +51,9 @@ export const AddNewPersona: FC<Props> = (props) => {
     }
   };
 
-  const [topP, setTopP] = useState(persona.topP || 0);
+  const [topP, setTopP] = useState<string>(persona.topP || '0');
 
-  const handleSliderChange = (event) => {
+  const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTopP(event.target.value);
   };
 
