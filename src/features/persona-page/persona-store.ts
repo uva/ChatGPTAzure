@@ -1,6 +1,6 @@
 import { proxy, useSnapshot } from "valtio";
 import { RevalidateCache } from "../common/navigation-helpers";
-import { PERSONA_ATTRIBUTE, PersonaModel } from "./persona-services/models";
+import { DEFAULT_MODEL, DEFAULT_TOP_P, DEFAULT_TEMPERATURE, PERSONA_ATTRIBUTE, PersonaModel } from "./persona-services/models";
 import {
   CreatePersona,
   UpsertPersona,
@@ -16,9 +16,9 @@ class PersonaState {
     isPublished: false,
     type: "PERSONA",
     userId: "",
-    topP: 1,
-    temperature: 1,
-    model: "gpt-4-turbo",
+    topP: DEFAULT_TOP_P,
+    temperature: DEFAULT_TEMPERATURE,
+    model: DEFAULT_MODEL,
   };
 
   public isOpened: boolean = false;
@@ -89,6 +89,21 @@ export const addOrUpdatePersona = async (previous: any, formData: FormData) => {
 };
 
 export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
+
+  const temperatureStr = formData.get("temperature");
+  let temperature = temperatureStr === null ? null : Number(temperatureStr);
+  if (temperature === null || isNaN(temperature)) {
+    // Handle the case where temperature is not a number
+    temperature = 1;
+  }
+
+  const topPStr = formData.get("topP");
+  let topP = topPStr === null ? null : Number(topPStr);
+  if (topP === null || isNaN(topP)) {
+    // Handle the case where temperature is not a number
+    topP = 1;
+  }
+
   return {
     id: formData.get("id") as string,
     name: formData.get("name") as string,
@@ -98,5 +113,8 @@ export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
     userId: "", // the user id is set on the server once the user is authenticated
     createdAt: new Date(),
     type: PERSONA_ATTRIBUTE,
+    topP: topP,
+    temperature: temperature,
+    model: formData.get("model") as string,
   };
 };

@@ -2,6 +2,10 @@ import { refineFromEmpty } from "@/features/common/schema-validation";
 import { z } from "zod";
 
 export const PERSONA_ATTRIBUTE = "PERSONA";
+export const DEFAULT_TEMPERATURE = 1;
+export const DEFAULT_TOP_P = 1;
+export const DEFAULT_MODEL = "gpt-4-turbo"
+
 export type PersonaModel = z.infer<typeof PersonaModelSchema>;
 const ModelOptions = z.enum(['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4']);
 

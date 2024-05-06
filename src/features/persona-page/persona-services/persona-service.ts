@@ -14,7 +14,7 @@ import {
 import { HistoryContainer } from "@/features/common/services/cosmos";
 import { uniqueId } from "@/features/common/util";
 import { SqlQuerySpec } from "@azure/cosmos";
-import { PERSONA_ATTRIBUTE, PersonaModel, PersonaModelSchema } from "./models";
+import { DEFAULT_MODEL, DEFAULT_TOP_P, DEFAULT_TEMPERATURE, PERSONA_ATTRIBUTE, PersonaModel, PersonaModelSchema } from "./models";
 
 type ModelOptions = 'gpt-3.5-turbo' | 'gpt-4-turbo' | 'gpt-4';
 
@@ -24,8 +24,8 @@ interface PersonaInput {
   personaMessage: string;
   isPublished: boolean;
   // additional optional options
-  Top_P?: number;
-  Temperature?: number;
+  topP?: number;
+  temperature?: number;
   model?: ModelOptions;
 }
 
@@ -93,6 +93,9 @@ export const CreatePersona = async (
       userId: await userHashedId(),
       createdAt: new Date(),
       type: "PERSONA",
+      topP: props.topP || DEFAULT_TOP_P,
+      temperature: props.temperature || DEFAULT_TEMPERATURE,
+      model: props.model || DEFAULT_MODEL,
     };
 
     const valid = ValidateSchema(modelToSave);
@@ -204,6 +207,9 @@ export const UpsertPersona = async (
           ? personaInput.isPublished
           : persona.isPublished,
         createdAt: new Date(),
+        topP: personaInput.topP || DEFAULT_TOP_P,
+        temperature: personaInput.temperature || DEFAULT_TEMPERATURE,
+        model: personaInput.model || DEFAULT_MODEL,
       };
 
       const validationResponse = ValidateSchema(modelToUpdate);

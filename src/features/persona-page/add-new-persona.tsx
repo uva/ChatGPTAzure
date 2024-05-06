@@ -54,11 +54,11 @@ export const AddNewPersona: FC<Props> = (props) => {
   const [topP, setTopP] = useState<number>(persona.topP || 0);
   const [temperature, setTemperature] = useState<number>(persona.topP || 0);
 
-  const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSliderChangeTopP = (event: ChangeEvent<HTMLInputElement>) => {
     setTopP(Number(event.target.value));
   };
 
-  const handleSliderChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleSliderChangeTemperature = (event: ChangeEvent<HTMLInputElement>) => {
     setTemperature(Number(event.target.value));
   };
 
@@ -131,7 +131,7 @@ export const AddNewPersona: FC<Props> = (props) => {
                   step="0.01"
                   name="topP"
                   value={topP}
-                  onChange={handleSliderChange}
+                  onChange={handleSliderChangeTopP}
                   className="block w-full" // Add your custom styles if necessary
                 />
                 <div className="text-center">{topP}</div>
@@ -147,7 +147,7 @@ export const AddNewPersona: FC<Props> = (props) => {
                   step="0.01"
                   name="temperature"
                   value={temperature}
-                  onChange={handleSliderChange}
+                  onChange={handleSliderChangeTemperature}
                   className="block w-full" // Add your custom styles if necessary
                 />
                 <div className="text-center">{topP}</div>
