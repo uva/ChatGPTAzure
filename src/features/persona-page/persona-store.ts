@@ -1,6 +1,6 @@
 import { proxy, useSnapshot } from "valtio";
 import { RevalidateCache } from "../common/navigation-helpers";
-import { DEFAULT_MODEL, DEFAULT_TOP_P, DEFAULT_TEMPERATURE, PERSONA_ATTRIBUTE, PersonaModel } from "./persona-services/models";
+import { ModelOptions, DEFAULT_MODEL, DEFAULT_TOP_P, DEFAULT_TEMPERATURE, PERSONA_ATTRIBUTE, PersonaModel } from "./persona-services/models";
 import {
   CreatePersona,
   UpsertPersona,
@@ -90,6 +90,7 @@ export const addOrUpdatePersona = async (previous: any, formData: FormData) => {
 
 export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
 
+  // catch errors regarding temperature, topP and model
   const temperatureStr = formData.get("temperature");
   let temperature = temperatureStr === null ? null : Number(temperatureStr);
   if (temperature === null || isNaN(temperature)) {
@@ -104,6 +105,13 @@ export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
     topP = 1;
   }
 
+  let model = 'gpt-4-turbo';
+  try {
+    model = ModelOptions.parse(formData.get("model"));
+  } catch (e) {
+    console.error(e);
+  }
+
   return {
     id: formData.get("id") as string,
     name: formData.get("name") as string,
@@ -115,6 +123,6 @@ export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
     type: PERSONA_ATTRIBUTE,
     topP: topP,
     temperature: temperature,
-    model: formData.get("model") as string,
+    model: model,
   };
 };

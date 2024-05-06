@@ -7,7 +7,7 @@ export const DEFAULT_TOP_P = 1;
 export const DEFAULT_MODEL = "gpt-4-turbo"
 
 export type PersonaModel = z.infer<typeof PersonaModelSchema>;
-const ModelOptions = z.enum(['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4']);
+export const ModelOptions = z.enum(['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4']);
 
 export const PersonaModelSchema = z.object({
   id: z.string(),
