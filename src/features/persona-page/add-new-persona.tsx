@@ -66,6 +66,7 @@ export const AddNewPersona: FC<Props> = (props) => {
 
   const handleModelChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setModel(event.target.value);
+  };
 
   return (
     <Sheet
@@ -169,7 +170,6 @@ export const AddNewPersona: FC<Props> = (props) => {
                   <option value="gpt-4">GPT-4</option>
                 </select>
               </div>
-
             </div>
           </ScrollArea>
           <SheetFooter className="py-2 flex sm:justify-between flex-row">
