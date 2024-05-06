@@ -4,10 +4,7 @@ import { z } from "zod";
 export const PERSONA_ATTRIBUTE = "PERSONA";
 export type PersonaModel = z.infer<typeof PersonaModelSchema>;
 const ModelOptions = z.enum(['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4']);
-model: ModelOptions.optional().refine(data => ModelOptions.options.includes(data), {
-  message: "Model must be either 'gpt-3.5-turbo', 'gpt-4-turbo' or 'gpt-4'"
-}),
-});
+
 export const PersonaModelSchema = z.object({
   id: z.string(),
   userId: z.string(),
@@ -43,6 +40,5 @@ export const PersonaModelSchema = z.object({
   model: ModelOptions.optional().refine(
     (data) => data === undefined || ModelOptions.options.includes(data), {
       message: "Model must be either 'gpt-3.5-turbo', 'gpt-4-turbo' or 'gpt-4' or undefined"
-    
   }),
 });
