@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { ServerActionResponse } from "../common/server-action-response";
 import { Button } from "../ui/button";
@@ -50,6 +50,13 @@ export const AddNewPersona: FC<Props> = (props) => {
       );
     }
   };
+
+  const [topP, setTopP] = useState(persona.topP || 0);
+
+  const handleSliderChange = (event) => {
+    setTopP(event.target.value);
+  };
+
 
   return (
     <Sheet
@@ -110,7 +117,7 @@ export const AddNewPersona: FC<Props> = (props) => {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="top_p">Top P</Label>
+                <Label htmlFor="top_p">Top P: {topP}</Label>
                 <input
                   type="range"
                   required
@@ -118,9 +125,11 @@ export const AddNewPersona: FC<Props> = (props) => {
                   max="1"
                   step="0.01"
                   name="top_p"
-                  defaultValue={persona.topP}
+                  value={topP}
+                  onChange={handleSliderChange}
                   className="block w-full" // Add your custom styles if necessary
                 />
+                <div className="text-center">{topP}</div>
               </div>
             </div>
           </ScrollArea>
