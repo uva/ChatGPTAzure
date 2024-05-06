@@ -1,3 +1,7 @@
+/* Default extensions are added in this code, the only default extension is the image generator using DALLE.
+Several steps contain: making the image generation executable for the model, and storing the image in blob storage
+*/
+
 "use server";
 import "server-only";
 
@@ -68,6 +72,7 @@ async function executeCreateImage(
 
   let response;
 
+  // Have Dalle create an image
   try {
     response = await openAI.images.generate(
       {
@@ -111,6 +116,8 @@ async function executeCreateImage(
       revised_prompt: response.data[0].revised_prompt,
       url: GetImageUrl(threadId, imageName),
     };
+
+    // Add usage to the user account here
 
     return updated_response;
   } catch (error) {

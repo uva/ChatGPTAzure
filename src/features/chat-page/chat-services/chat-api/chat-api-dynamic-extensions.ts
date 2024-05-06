@@ -1,3 +1,6 @@
+/* Additional user-made extensions are added in this code. This is done using the users' code and headers
+*/
+
 "use server";
 import "server-only";
 
