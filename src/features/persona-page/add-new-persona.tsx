@@ -109,6 +109,19 @@ export const AddNewPersona: FC<Props> = (props) => {
                   placeholder="Personality of your persona"
                 />
               </div>
+              <div className="grid gap-2">
+                <Label htmlFor="top_p">Top P</Label>
+                <input
+                  type="range"
+                  required
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  name="top_p"
+                  defaultValue={persona.top_p}
+                  className="block w-full" // Add your custom styles if necessary
+                />
+              </div>
             </div>
           </ScrollArea>
           <SheetFooter className="py-2 flex sm:justify-between flex-row">

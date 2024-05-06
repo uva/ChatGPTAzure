@@ -16,11 +16,17 @@ import { uniqueId } from "@/features/common/util";
 import { SqlQuerySpec } from "@azure/cosmos";
 import { PERSONA_ATTRIBUTE, PersonaModel, PersonaModelSchema } from "./models";
 
+type ModelOptions = 'gpt-3.5-turbo' | 'gpt-4-turbo' | 'gpt-4';
+
 interface PersonaInput {
   name: string;
   description: string;
   personaMessage: string;
   isPublished: boolean;
+  // additional optional options
+  Top_P?: number;
+  Temperature?: number;
+  model?: ModelOptions;
 }
 
 export const FindPersonaByID = async (

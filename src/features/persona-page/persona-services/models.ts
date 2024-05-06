@@ -3,6 +3,7 @@ import { z } from "zod";
 
 export const PERSONA_ATTRIBUTE = "PERSONA";
 export type PersonaModel = z.infer<typeof PersonaModelSchema>;
+const ModelOptions = z.enum(['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4']);
 
 export const PersonaModelSchema = z.object({
   id: z.string(),
@@ -28,4 +29,15 @@ export const PersonaModelSchema = z.object({
   isPublished: z.boolean(),
   type: z.literal(PERSONA_ATTRIBUTE),
   createdAt: z.date(),
+  Top_P: z.number()
+    .min(0, { message: "Top_P must be between 0 and 1" })
+    .max(1, { message: "Top_P must be between 0 and 1" })
+    .optional(),
+  Temperature: z.number()
+    .min(0, { message: "Temperature must be between 0 and 1" })
+    .max(1, { message: "Temperature must be between 0 and 1" })
+    .optional(),
+  model: ModelOptions.optional().refine(data => ModelOptions.options.includes(data), {
+    message: "Model must be either 'gpt-3.5-turbo', 'gpt-4-turbo' or 'gpt-4'"
+  }),
 });
