@@ -16,6 +16,7 @@ class PersonaState {
     isPublished: false,
     type: "PERSONA",
     userId: "",
+    Top_P: 1,
   };
 
   public isOpened: boolean = false;
