@@ -105,12 +105,19 @@ export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
     topP = 1;
   }
 
-  let model = 'gpt-4-turbo';
-  try {
-    model = ModelOptions.parse(formData.get("model"));
-  } catch (e) {
-    console.error(e);
+  const modelValue = formData.get("model");
+  let model: typeof ModelOptions._type | undefined = 'gpt-4-turbo'; // Set default value
+
+  if (modelValue && typeof modelValue === "string") {
+    try {
+      // Validate model value
+      model = ModelOptions.parse(modelValue);
+    } catch (e) {
+      // If the provided model value is invalid, fall back to the default
+      console.error(e); // Log the error
+    }
   }
+
 
   return {
     id: formData.get("id") as string,
