@@ -134,11 +134,11 @@ export const AddNewPersona: FC<Props> = (props) => {
                   onChange={handleSliderChangeTopP}
                   className="block w-full" // Add your custom styles if necessary
                 />
-                <div className="text-center">{topP}</div>
+                {/* <div className="text-center">{topP}</div> */}
               </div>
 
               <div className="grid gap-2">
-                <Label htmlFor="temperature">temperature: {topP}</Label>
+                <Label htmlFor="temperature">temperature: {temperature}</Label>
                 <input
                   type="range"
                   required
@@ -150,7 +150,7 @@ export const AddNewPersona: FC<Props> = (props) => {
                   onChange={handleSliderChangeTemperature}
                   className="block w-full" // Add your custom styles if necessary
                 />
-                <div className="text-center">{topP}</div>
+                {/* <div className="text-center">{temperature}</div> */}
               </div>
 
             </div>
