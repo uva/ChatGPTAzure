@@ -62,7 +62,7 @@ export const AddNewPersona: FC<Props> = (props) => {
     setTemperature(Number(event.target.value));
   };
 
-  const [model, setModel] = useState<number>(persona.model || 'gpt-4-turbo'); // Default value
+  const [model, setModel] = useState<string>(persona.model || 'gpt-4-turbo'); // Default value
 
   const handleModelChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setModel(event.target.value);
