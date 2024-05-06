@@ -118,7 +118,7 @@ export const AddNewPersona: FC<Props> = (props) => {
                   max="1"
                   step="0.01"
                   name="top_p"
-                  defaultValue={persona.top_p}
+                  defaultValue={persona.topP}
                   className="block w-full" // Add your custom styles if necessary
                 />
               </div>

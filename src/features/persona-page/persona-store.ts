@@ -16,7 +16,9 @@ class PersonaState {
     isPublished: false,
     type: "PERSONA",
     userId: "",
-    Top_P: 1,
+    topP: 1,
+    temperature: 1,
+    model: "gpt-4-turbo",
   };
 
   public isOpened: boolean = false;

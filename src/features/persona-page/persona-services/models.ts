@@ -29,11 +29,11 @@ export const PersonaModelSchema = z.object({
   isPublished: z.boolean(),
   type: z.literal(PERSONA_ATTRIBUTE),
   createdAt: z.date(),
-  Top_P: z.number()
+  topP: z.number()
     .min(0, { message: "Top_P must be between 0 and 1" })
     .max(1, { message: "Top_P must be between 0 and 1" })
     .optional(),
-  Temperature: z.number()
+  temperature: z.number()
     .min(0, { message: "Temperature must be between 0 and 1" })
     .max(1, { message: "Temperature must be between 0 and 1" })
     .optional(),
