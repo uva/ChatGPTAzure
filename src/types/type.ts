@@ -25,6 +25,8 @@ const azureEnvVars = [
   "AZURE_SPEECH_REGION",
   "AZURE_SPEECH_KEY",
   "AZURE_KEY_VAULT_NAME",
+  "AVAILABLE_AZURE_OPENAI_LLMS",
+  "DEFAULT_LLM"
 ] as const;
 
 type RequiredServerEnvKeys = (typeof azureEnvVars)[number];

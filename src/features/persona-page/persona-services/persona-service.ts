@@ -16,8 +16,6 @@ import { uniqueId } from "@/features/common/util";
 import { SqlQuerySpec } from "@azure/cosmos";
 import { DEFAULT_MODEL, DEFAULT_TOP_P, DEFAULT_TEMPERATURE, PERSONA_ATTRIBUTE, PersonaModel, PersonaModelSchema } from "./models";
 
-type ModelOptions = 'gpt-3.5-turbo' | 'gpt-4-turbo' | 'gpt-4';
-
 interface PersonaInput {
   name: string;
   description: string;
@@ -26,7 +24,7 @@ interface PersonaInput {
   // additional optional options
   topP?: number;
   temperature?: number;
-  model?: ModelOptions;
+  model?: string;
 }
 
 export const FindPersonaByID = async (

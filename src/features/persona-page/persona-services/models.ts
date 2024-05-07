@@ -4,10 +4,20 @@ import { z } from "zod";
 export const PERSONA_ATTRIBUTE = "PERSONA";
 export const DEFAULT_TEMPERATURE = 1;
 export const DEFAULT_TOP_P = 1;
-export const DEFAULT_MODEL = "gpt-4-turbo"
+export const DEFAULT_MODEL = process.env.DEFAULT_LLM || "gpt-4-turbo";
 
 export type PersonaModel = z.infer<typeof PersonaModelSchema>;
-export const ModelOptions = z.enum(['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4']);
+
+// Use environment model options unless not available then hardcoded default model options
+const defaultModelOptions = ['gpt-4-turbo'];
+
+const availableModels = process.env.AVAILABLE_AZURE_OPENAI_LLMS;
+
+const modelOptions = availableModels && availableModels.length > 0
+  ? availableModels.split(',').map(model => model.trim())
+  : defaultModelOptions;
+
+export const ModelOptions = z.enum(modelOptions);
 
 export const PersonaModelSchema = z.object({
   id: z.string(),
@@ -43,6 +53,6 @@ export const PersonaModelSchema = z.object({
     .optional(),
   model: ModelOptions.optional().refine(
     (data) => data === undefined || ModelOptions.options.includes(data), {
-      message: "Model must be either 'gpt-3.5-turbo', 'gpt-4-turbo' or 'gpt-4' or undefined"
+      message: "Invalid model option"
   }),
 });

@@ -23,6 +23,7 @@ import {
   personaStore,
   usePersonaState,
 } from "./persona-store";
+import { ModelOptions } from "./persona-services/models";
 
 interface Props {}
 
@@ -137,7 +138,7 @@ export const AddNewPersona: FC<Props> = (props) => {
                   name="topP"
                   value={topP}
                   onChange={handleSliderChangeTopP}
-                  className="block w-full" // Add your custom styles if necessary
+                  className="block w-full"
                 />
                 {/* <div className="text-center">{topP}</div> */}
               </div>
@@ -152,7 +153,7 @@ export const AddNewPersona: FC<Props> = (props) => {
                   name="temperature"
                   value={temperature}
                   onChange={handleSliderChangeTemperature}
-                  className="block w-full" // Add your custom styles if necessary
+                  className="block w-full"
                 />
                 {/* <div className="text-center">{temperature}</div> */}
               </div>
@@ -163,11 +164,13 @@ export const AddNewPersona: FC<Props> = (props) => {
                   name="model"
                   value={model}
                   onChange={handleModelChange}
-                  className="block w-full border border-gray-300 rounded-md p-2 shadow-sm" // Add your custom styles if necessary
+                  className="block w-full border border-gray-300 rounded-md p-2 shadow-sm"
                 >
-                  <option value="gpt-3.5-turbo">GPT-3.5-Turbo</option>
-                  <option value="gpt-4-turbo">GPT-4-Turbo</option>
-                  <option value="gpt-4">GPT-4</option>
+                  {modelOptions.map((modelOption) => (
+                    <option value={modelOption} key={modelOption}>
+                      {modelOption.replace(/-/g, ' ').toUpperCase()}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
