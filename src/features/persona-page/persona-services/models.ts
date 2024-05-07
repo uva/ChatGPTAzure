@@ -4,7 +4,7 @@ import { z } from "zod";
 export const PERSONA_ATTRIBUTE = "PERSONA";
 export const DEFAULT_TEMPERATURE = 1;
 export const DEFAULT_TOP_P = 1;
-export const DEFAULT_MODEL = process.env.DEFAULT_LLM || "gpt-4-turbo";
+export const DEFAULT_MODEL = process.env.DEFAULT_LLM;
 
 export type PersonaModel = z.infer<typeof PersonaModelSchema>;
 
