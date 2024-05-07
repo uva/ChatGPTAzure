@@ -9,7 +9,7 @@ export const DEFAULT_MODEL = process.env.DEFAULT_LLM || "gpt-4-turbo";
 export type PersonaModel = z.infer<typeof PersonaModelSchema>;
 
 // Use environment model options unless not available then hardcoded default model options
-const availableModels = process.env.AVAILABLE_AZURE_OPENAI_LLMS;
+const availableModels = process.env.AVAILABLE_AZURE_OPENAI_LLMS || 'gpt-4-turbo,gpt-4';
 
 const modelOptionsArray = availableModels.split(',').map((model) => model.trim()) as [string, ...string[]];
 
