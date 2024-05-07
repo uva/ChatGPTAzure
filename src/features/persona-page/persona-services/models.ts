@@ -13,9 +13,9 @@ const availableModels = process.env.AVAILABLE_AZURE_OPENAI_LLMS || 'gpt-4-turbo'
 
 const modelOptionsArray = availableModels.split(',').map((model) => model.trim());
 
-export const rawModelOptions = ModelOptions;
+export const rawModelOptions = modelOptionsArray;
 
-export const modelOptions = z.enum(ModelOptions);
+export const modelOptions = z.enum(modelOptionsArray);
 
 export const PersonaModelSchema = z.object({
   id: z.string(),
