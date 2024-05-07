@@ -13,11 +13,11 @@ const defaultModelOptions = ['gpt-4-turbo'];
 
 const availableModels = process.env.AVAILABLE_AZURE_OPENAI_LLMS;
 
-const modelOptions = availableModels && availableModels.length > 0
+const ModelOptions = availableModels && availableModels.length > 0
   ? availableModels.split(',').map(model => model.trim())
   : defaultModelOptions;
 
-export const ModelOptions = z.enum(modelOptions);
+export const modelOptions = z.enum(ModelOptions);
 
 export const PersonaModelSchema = z.object({
   id: z.string(),
@@ -51,8 +51,8 @@ export const PersonaModelSchema = z.object({
     .min(0, { message: "Temperature must be between 0 and 1" })
     .max(1, { message: "Temperature must be between 0 and 1" })
     .optional(),
-  model: ModelOptions.optional().refine(
-    (data) => data === undefined || ModelOptions.options.includes(data), {
+  model: modelOptions.optional().refine(
+    (data) => data === undefined || modelOptions.options.includes(data), {
       message: "Invalid model option"
   }),
 });

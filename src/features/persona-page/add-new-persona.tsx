@@ -23,7 +23,7 @@ import {
   personaStore,
   usePersonaState,
 } from "./persona-store";
-import { ModelOptions } from "./persona-services/models";
+import { modelOptions } from "./persona-services/models";
 
 interface Props {}
 
