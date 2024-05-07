@@ -23,7 +23,7 @@ import {
   personaStore,
   usePersonaState,
 } from "./persona-store";
-import { modelOptions } from "./persona-services/models";
+import { rawModelOptions } from "./persona-services/models";
 
 interface Props {}
 
@@ -166,7 +166,7 @@ export const AddNewPersona: FC<Props> = (props) => {
                   onChange={handleModelChange}
                   className="block w-full border border-gray-300 rounded-md p-2 shadow-sm"
                 >
-                  {modelOptions.map((modelOption) => (
+                  {rawModelOptions.map((modelOption) => (
                     <option value={modelOption} key={modelOption}>
                       {modelOption.replace(/-/g, ' ').toUpperCase()}
                     </option>

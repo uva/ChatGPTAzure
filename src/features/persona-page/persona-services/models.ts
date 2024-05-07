@@ -17,6 +17,8 @@ const ModelOptions = availableModels && availableModels.length > 0
   ? availableModels.split(',').map(model => model.trim())
   : defaultModelOptions;
 
+export const rawModelOptions = ModelOptions;
+
 export const modelOptions = z.enum(ModelOptions);
 
 export const PersonaModelSchema = z.object({
