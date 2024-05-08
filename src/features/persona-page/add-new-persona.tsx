@@ -53,7 +53,7 @@ export const AddNewPersona: FC<Props> = (props) => {
   };
 
   const [topP, setTopP] = useState<number>(persona.topP || 0);
-  const [temperature, setTemperature] = useState<number>(persona.topP || 0);
+  const [temperature, setTemperature] = useState<number>(persona.temperature || 0);
 
   const handleSliderChangeTopP = (event: ChangeEvent<HTMLInputElement>) => {
     setTopP(Number(event.target.value));

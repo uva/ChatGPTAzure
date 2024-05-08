@@ -47,12 +47,18 @@ class PersonaState {
     name: string;
     description: string;
     personaMessage: string;
+    topP: number;
+    temperature: number;
+    model: string;
   }) {
     this.persona = {
       ...this.defaultModel,
       name: persona.name,
       description: persona.description,
       personaMessage: persona.personaMessage,
+      topP: persona.topP,
+      temperature: persona.temperature,
+      model: persona.model,
     };
     this.isOpened = true;
   }

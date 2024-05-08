@@ -41,6 +41,12 @@ export const ViewPersona: FC<Props> = (props) => {
                 name="personaMessage"
                 placeholder="Personality of your persona"
               />
+              {/* Display persona advanced settings */}
+              <div className="text-sm">
+                <p><strong>Top P:</strong> {persona.topP}</p>
+                <p><strong>Temperature:</strong> {persona.temperature}</p>
+                <p><strong>Model:</strong> {persona.model}</p>
+              </div>
               <p className="text-xs text-muted-foreground">
                 {persona.isPublished
                   ? `This is published and everyone in your organisation can use ${persona.name} persona`
