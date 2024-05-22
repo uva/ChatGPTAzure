@@ -96,24 +96,20 @@ export const addOrUpdatePersona = async (previous: any, formData: FormData) => {
 
 export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
 
-  // // catch errors regarding temperature, topP and model
-  // const temperatureStr = formData.get("temperature");
-  // let temperature = temperatureStr === null ? null : Number(temperatureStr);
-  // if (temperature === null || isNaN(temperature)) {
-  //   // Handle the case where temperature is not a number
-  //   temperature = 1;
-  // }
+  // catch errors regarding temperature, topP and model
+  const temperatureStr = formData.get("temperature");
+  let temperature = temperatureStr === null ? null : Number(temperatureStr);
+  if (temperature === null || isNaN(temperature)) {
+    // Handle the case where temperature is not a number
+    temperature = 1;
+  }
 
-  // const topPStr = formData.get("topP");
-  // let topP = topPStr === null ? null : Number(topPStr);
-  // if (topP === null || isNaN(topP)) {
-  //   // Handle the case where temperature is not a number
-  //   topP = 1;
-  // }
-
-  const topP = Number(formData.get("topP")) || 1;
-
-  const temperature = Number(formData.get("temperature")) || 1;
+  const topPStr = formData.get("topP");
+  let topP = topPStr === null ? null : Number(topPStr);
+  if (topP === null || isNaN(topP)) {
+    // Handle the case where temperature is not a number
+    topP = 1;
+  }
 
   const modelValue = formData.get("model");
   let model: typeof modelOptions._type | undefined = 'gpt-4-turbo'; // Set default value

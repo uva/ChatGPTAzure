@@ -43,12 +43,10 @@ export const PersonaModelSchema = z.object({
   createdAt: z.date(),
   topP: z.number()
     .min(0, { message: "Top_P must be between 0 and 1" })
-    .max(1, { message: "Top_P must be between 0 and 1" })
-    .optional(),
+    .max(1, { message: "Top_P must be between 0 and 1" }),
   temperature: z.number()
     .min(0, { message: "Temperature must be between 0 and 1" })
-    .max(1, { message: "Temperature must be between 0 and 1" })
-    .optional(),
+    .max(1, { message: "Temperature must be between 0 and 1" }),
   model: modelOptions.optional().refine(
     (data) => data === undefined || modelOptions.options.includes(data), {
       message: "Invalid model option"
