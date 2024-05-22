@@ -289,7 +289,7 @@ export const CreateChatThread = async (): Promise<
       personaMessage: "",
       personaMessageTitle: CHAT_DEFAULT_PERSONA,
       temperature: 1,
-      top_p: 1,
+      topP: 1,
       extension: [],
     };
 
