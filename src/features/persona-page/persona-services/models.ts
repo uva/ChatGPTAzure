@@ -47,7 +47,7 @@ export const PersonaModelSchema = z.object({
   temperature: z.number()
     .min(0, { message: "Temperature must be between 0 and 1" })
     .max(1, { message: "Temperature must be between 0 and 1" }),
-  model: modelOptions.optional().refine(
+  model: modelOptions.refine(
     (data) => data === undefined || modelOptions.options.includes(data), {
       message: "Invalid model option"
   }),
