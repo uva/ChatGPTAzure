@@ -14,14 +14,14 @@ import {
 import { HistoryContainer } from "@/features/common/services/cosmos";
 import { uniqueId } from "@/features/common/util";
 import { SqlQuerySpec } from "@azure/cosmos";
-import { DEFAULT_MODEL, DEFAULT_TOP_P, DEFAULT_TEMPERATURE, PERSONA_ATTRIBUTE, PersonaModel, PersonaModelSchema } from "./models";
+import { PERSONA_ATTRIBUTE, PersonaModel, PersonaModelSchema } from "./models";
 
 interface PersonaInput {
   name: string;
   description: string;
   personaMessage: string;
   isPublished: boolean;
-  // additional optional options
+  // additional options
   topP: number;
   temperature: number;
   model: string;
@@ -313,8 +313,9 @@ export const CreatePersonaChat = async (
       type: CHAT_THREAD_ATTRIBUTE,
       personaMessage: persona.personaMessage,
       personaMessageTitle: persona.name,
-      temperature: persona.temperature || 1,
-      topP: persona.topP || 1,
+      temperature: persona.temperature,
+      topP: persona.topP,
+      model: persona.model
       extension: [],
     });
 

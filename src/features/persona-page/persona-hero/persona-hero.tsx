@@ -2,7 +2,7 @@
 import { Hero, HeroButton } from "@/features/ui/hero";
 import { Atom, Languages, VenetianMask } from "lucide-react";
 import { personaStore } from "../persona-store";
-import { DEFAULT_TEMPERATURE, DEFAULT_TOP_P, DEFAULT_MODEL } from "../persona-services/models"
+import { DEFAULT_TEMPERATURE, DEFAULT_TOP_P, DEFAULT_MODEL } from "../../theme/theme-config"
 
 export const PersonaHero = () => {
   return (

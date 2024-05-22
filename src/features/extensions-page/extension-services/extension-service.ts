@@ -25,6 +25,11 @@ import {
   ExtensionModel,
   ExtensionModelSchema,
 } from "./models";
+import {
+  DEFAULT_MODEL,
+  DEFAULT_TEMPERATURE,
+  DEFAULT_TOP_P
+} from "../../theme/theme-config";
 
 const KEY_VAULT_MASK = "**********";
 
@@ -398,8 +403,9 @@ export const CreateChatWithExtension = async (
       type: CHAT_THREAD_ATTRIBUTE,
       personaMessage: "",
       personaMessageTitle: CHAT_DEFAULT_PERSONA,
-      temperature: 1,
-      topP: 1,
+      temperature: DEFAULT_TEMPERATURE,
+      topP: DEFAULT_TOP_P,
+      model: DEFAULT_MODEL,
       extension: [extension.id],
     });
 

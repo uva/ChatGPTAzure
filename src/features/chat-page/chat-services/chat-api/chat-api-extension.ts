@@ -10,6 +10,11 @@ import { RunnableToolFunction } from "openai/lib/RunnableFunction";
 import { ChatCompletionStreamingRunner } from "openai/resources/beta/chat/completions";
 import { ChatCompletionMessageParam } from "openai/resources/chat/completions";
 import { ChatThreadModel } from "../models";
+import {
+  DEFAULT_MODEL,
+  DEFAULT_TEMPERATURE,
+  DEFAULT_TOP_P
+} from "../../../theme/theme-config";
 export const ChatApiExtensions = async (props: {
   chatThread: ChatThreadModel;
   userMessage: string;
@@ -23,10 +28,10 @@ export const ChatApiExtensions = async (props: {
   const systemMessage = await extensionsSystemMessage(chatThread);
   return openAI.beta.chat.completions.runTools(
     {
-      model: "",
+      model: chatThread.model || DEFAULT_MODEL,
       stream: true,
-      temperature: chatThread.temperature || 1,
-      top_p: chatThread.topP || 1,
+      temperature: chatThread.temperature || DEFAULT_TEMPERATURE,
+      top_p: chatThread.topP || DEFAULT_TOP_P,
       messages: [
         {
           role: "system",

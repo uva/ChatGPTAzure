@@ -12,6 +12,9 @@ import { uniqueId } from "@/features/common/util";
 import {
   CHAT_DEFAULT_PERSONA,
   NEW_CHAT_NAME,
+  DEFAULT_MODEL,
+  DEFAULT_TEMPERATURE,
+  DEFAULT_TOP_P
 } from "@/features/theme/theme-config";
 import { SqlQuerySpec } from "@azure/cosmos";
 import { HistoryContainer } from "../../common/services/cosmos";
@@ -288,8 +291,9 @@ export const CreateChatThread = async (): Promise<
       type: CHAT_THREAD_ATTRIBUTE,
       personaMessage: "",
       personaMessageTitle: CHAT_DEFAULT_PERSONA,
-      temperature: 1,
-      topP: 1,
+      temperature: DEFAULT_TEMPERATURE,
+      topP: DEFAULT_TOP_P,
+      model: DEFAULT_MODEL,
       extension: [],
     };
 

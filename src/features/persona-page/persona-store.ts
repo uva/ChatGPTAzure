@@ -1,6 +1,7 @@
 import { proxy, useSnapshot } from "valtio";
 import { RevalidateCache } from "../common/navigation-helpers";
-import { modelOptions, DEFAULT_MODEL, DEFAULT_TOP_P, DEFAULT_TEMPERATURE, PERSONA_ATTRIBUTE, PersonaModel } from "./persona-services/models";
+import { modelOptions, PERSONA_ATTRIBUTE, PersonaModel } from "./persona-services/models";
+import { DEFAULT_TEMPERATURE, DEFAULT_TOP_P, DEFAULT_MODEL } from "../theme/theme-config"
 import {
   CreatePersona,
   UpsertPersona,
@@ -112,7 +113,7 @@ export const FormDataToPersonaModel = (formData: FormData): PersonaModel => {
   }
 
   const modelValue = formData.get("model");
-  let model: typeof modelOptions._type | undefined = 'gpt-4-turbo'; // Set default value
+  let model: typeof modelOptions._type | undefined = DEFAULT_MODEL; // Set default value
 
   if (modelValue && typeof modelValue === "string") {
     try {

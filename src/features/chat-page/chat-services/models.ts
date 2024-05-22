@@ -34,6 +34,7 @@ export interface ChatThreadModel {
   personaMessageTitle: string;
   temperature: number;
   topP: number;
+  model: string;
   extension: string[];
   type: typeof CHAT_THREAD_ATTRIBUTE;
 }
