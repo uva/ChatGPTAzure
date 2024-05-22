@@ -398,6 +398,8 @@ export const CreateChatWithExtension = async (
       type: CHAT_THREAD_ATTRIBUTE,
       personaMessage: "",
       personaMessageTitle: CHAT_DEFAULT_PERSONA,
+      temperature: 1,
+      topP: 1,
       extension: [extension.id],
     });
 
