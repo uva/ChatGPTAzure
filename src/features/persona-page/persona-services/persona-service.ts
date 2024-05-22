@@ -313,8 +313,8 @@ export const CreatePersonaChat = async (
       type: CHAT_THREAD_ATTRIBUTE,
       personaMessage: persona.personaMessage,
       personaMessageTitle: persona.name,
-      temperature: persona.temperature,
-      topP: persona.topP,
+      temperature: persona.temperature || 1,
+      topP: persona.topP || 1,
       extension: [],
     });
 
