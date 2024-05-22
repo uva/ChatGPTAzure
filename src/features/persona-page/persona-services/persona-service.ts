@@ -315,7 +315,7 @@ export const CreatePersonaChat = async (
       personaMessageTitle: persona.name,
       temperature: persona.temperature,
       topP: persona.topP,
-      model: persona.model
+      model: persona.model,
       extension: [],
     });
 
