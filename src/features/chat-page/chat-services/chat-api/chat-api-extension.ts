@@ -25,6 +25,8 @@ export const ChatApiExtensions = async (props: {
     {
       model: "",
       stream: true,
+      temperature: chatThread.temperature || 1,
+      top_p: chatThread.topP || 1,
       messages: [
         {
           role: "system",

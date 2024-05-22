@@ -18,6 +18,8 @@ export const ChatApiMultimodal = (props: {
     {
       model: "",
       stream: true,
+      temperature: chatThread.temperature || 1,
+      top_p: chatThread.topP || 1,
       max_tokens: 4096,
       messages: [
         {
