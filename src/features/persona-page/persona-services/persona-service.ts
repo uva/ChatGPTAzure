@@ -22,9 +22,9 @@ interface PersonaInput {
   personaMessage: string;
   isPublished: boolean;
   // additional optional options
-  topP?: number;
-  temperature?: number;
-  model?: string;
+  topP: number;
+  temperature: number;
+  model: string;
 }
 
 export const FindPersonaByID = async (
@@ -91,9 +91,9 @@ export const CreatePersona = async (
       userId: await userHashedId(),
       createdAt: new Date(),
       type: "PERSONA",
-      topP: props.topP || DEFAULT_TOP_P,
-      temperature: props.temperature || DEFAULT_TEMPERATURE,
-      model: props.model || DEFAULT_MODEL,
+      topP: props.topP,
+      temperature: props.temperature,
+      model: props.model,
     };
 
     const valid = ValidateSchema(modelToSave);
@@ -205,9 +205,9 @@ export const UpsertPersona = async (
           ? personaInput.isPublished
           : persona.isPublished,
         createdAt: new Date(),
-        topP: personaInput.topP || DEFAULT_TOP_P,
-        temperature: personaInput.temperature || DEFAULT_TEMPERATURE,
-        model: personaInput.model || DEFAULT_MODEL,
+        topP: personaInput.topP,
+        temperature: personaInput.temperature,
+        model: personaInput.model,
       };
 
       const validationResponse = ValidateSchema(modelToUpdate);
